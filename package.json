@@ -1,0 +1,19 @@
+{
+  "name": "ts-dom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel public/*.html"
+  },
+  "author": "Nisreen KHATTAM",
+  "license": "ISC",
+  "dependencies": {
+    "lorem-ipsum": "^2.0.8",
+    "parcel": "^2.9.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "QCM"
+  }
+}
