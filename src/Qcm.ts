@@ -1,9 +1,10 @@
 
 const target = document.querySelector<HTMLDivElement>('.target');
-target.addEventListener('click', (event) => {
-    creForm1();
+creForm1();
+target.classList.add('container', ' m-auto', 'rounded');
+// target.addEventListener('click', (event) => {
 
-})
+// })
 
 function creForm1() {
     const form1 = document.createElement('form');
@@ -15,32 +16,35 @@ function creForm1() {
     let but = 'Repondre';
 
     let cardform1 = `
-    <div class="container m-auto">
+    <form class="container m-auto">
     <h4>${x}</h4>
     <p>${y}</p>
-    <input type="radio" id="r1" >
+    <input type="radio" id="r1"  name="rr" value="test">
     <label for="r1">${reponch1}</label><br>
     
-    <input type="radio" id="r2" >
+    <input type="radio" id="r2" name="rr" value="test">
     <label for="r2">${reponch2}</label><br>
     
-    <input type="radio" id="r3" >
+    <input type="radio" id="r3" name="rr" value="test">
     <label for="r3">${reponch3}</label><br><br>
     
     <button class="btn btn-primary" id="test">${but}</button>
-</div>
+</form>
     `;
-    // form1.innerHTML = cardform;
+    target.style.width = '500px';
+
+    target.style.backgroundColor = '#F8E8EE';
+
     target.innerHTML = cardform1;
     let btt = document.querySelector('#test');
     btt.addEventListener('click', () => {
 
         const verifier = document.getElementById('r1')
-        if (verifier.ariaChecked) {
+        if (verifier) {
             creForm2();
         }
         else {
-            alert('choisir la bon reponse');
+            alert('Choisir la bonne reponse');
         }
     })
 }
@@ -73,6 +77,10 @@ function creForm2() {
 </div>
     `;
     // form1.innerHTML = cardform;
+    target.style.width = '500px';
+
+    target.style.backgroundColor = '#F8E8EE';
+
     target.innerHTML = cardform2;
     let btt = document.querySelector('#test');
     btt.addEventListener('click', () => {
@@ -81,7 +89,7 @@ function creForm2() {
             creForm3();
         }
         else {
-            alert('choisir la bon reponse');
+            alert('Choisir la bonne reponse');
         }
     })
 }
@@ -113,6 +121,9 @@ function creForm3() {
 
     `;
     // form1.innerHTML = cardform;
+    target.style.width = '500px';
+
+    target.style.backgroundColor = '#F8E8EE';
     target.innerHTML = cardform3;
     let btt = document.querySelector('#test');
     btt.addEventListener('click', () => {
@@ -121,7 +132,7 @@ function creForm3() {
             creForm4();
         }
         else {
-            alert('choisir la bon reponse');
+            alert('Choisir la bonne reponse');
         }
     })
 }
@@ -130,7 +141,7 @@ function creForm3() {
 function creForm4() {
     const form4 = document.createElement('form');
     let x = 'Question n°4 :';
-    let y = 'Lorsque vous utilisez l'élément a, vous devez obligatoirement préciser...';
+    let y = 'Lorsque vous utilisez l\'élément a, vous devez obligatoirement préciser...';
     let reponch1 = '1. Un attribut target';
     let reponch2 = '2. Un attribut href';
     let reponch3 = '3. Deux attributs href et target';
@@ -140,19 +151,22 @@ function creForm4() {
     <div class="container m-auto">
     <h4>${x}</h4>
     <p>${y}</p>
-    <input type="radio" id="r1">
+    <input type="radio" id="r1" name="rr">
     <label for="r1">${reponch1}</label><br>
     
-    <input type="radio" id="r2">
+    <input type="radio" id="r2" name="rr">
     <label for="r2">${reponch2}</label><br>
     
-    <input type="radio" id="r3">
+    <input type="radio" id="r3" name="rr">
     <label for="r3">${reponch3}</label><br>
     
     <button class="btn btn-primary" id="test">${but}</button>
 </div>
     `;
     // form1.innerHTML = cardform;
+    target.style.width = '500px';
+
+    target.style.backgroundColor = '#F8E8EE';
     target.innerHTML = cardform4;
     let btt = document.querySelector('#test');
     btt.addEventListener('click', () => {
@@ -168,5 +182,37 @@ function creForm4() {
 
 
 function final() {
-    target.innerHTML = 'Bravo vous avez reussir'
+    // const divf = document.createElement('div');
+    target.style.backgroundColor = '#F8E8EE';
+    target.style.width = '500px';
+    target.innerHTML = "Bravo vous avez reussir votre note est 100";
+
+
+    const formf = document.createElement('form');
+    let x = 'Merci pour votre participation';
+    let y = 'vous avez un bon niveau et votre note est 100';
+    let but = 'finir'
+    let butf = 'Refaire le QCM';
+
+    let cardformf = `
+    <div class="container m-auto">
+    <h4>${x}</h4>
+    <p>${y}</p>
+    <button class="btn btn-primary" id="test">${but}</button>
+    <button class="btn btn-primary" id="testf">${butf}</button>
+</div>
+    `;
+    // form1.innerHTML = cardform;
+    target.innerHTML = cardformf;
+    let btt = document.querySelector('#test');
+    let bttf = document.querySelector('#testf');
+
+    btt.addEventListener('click', () => {
+
+        target.innerHTML = 'Au Revoir';
+    })
+    bttf.addEventListener('click', () => {
+        creForm1();
+
+    })
 }
