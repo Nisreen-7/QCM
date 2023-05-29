@@ -1,10 +1,8 @@
 
 const target = document.querySelector<HTMLDivElement>('.target');
 creForm1();
-target.classList.add('container', ' m-auto', 'rounded');
-// target.addEventListener('click', (event) => {
+// target.classList.add('container', 'rounded');
 
-// })
 
 function creForm1() {
     const form1 = document.createElement('form');
@@ -16,20 +14,20 @@ function creForm1() {
     let but = 'Repondre';
 
     let cardform1 = `
-    <form class="container m-auto">
+    <div class="container m-auto" >
     <h4>${x}</h4>
     <p>${y}</p>
-    <input type="radio" id="r1"  name="rr" value="test">
+    <input type="radio" id="r1" name="rr">
     <label for="r1">${reponch1}</label><br>
     
-    <input type="radio" id="r2" name="rr" value="test">
+    <input type="radio" id="r2" name="rr">
     <label for="r2">${reponch2}</label><br>
     
-    <input type="radio" id="r3" name="rr" value="test">
+    <input type="radio" id="r3" name="rr">
     <label for="r3">${reponch3}</label><br><br>
     
     <button class="btn btn-primary" id="test">${but}</button>
-</form>
+</div>
     `;
     target.style.width = '500px';
 
@@ -39,12 +37,12 @@ function creForm1() {
     let btt = document.querySelector('#test');
     btt.addEventListener('click', () => {
 
-        const verifier = document.getElementById('r1')
+        const verifier = document.querySelector<HTMLInputElement>('#r1').checked;
         if (verifier) {
             creForm2();
         }
         else {
-            alert('Choisir la bonne reponse');
+            alert('CHOISIR LA BONNE REPONSE');
         }
     })
 }
@@ -64,13 +62,13 @@ function creForm2() {
     <div class="container m-auto">
     <h4>${x}</h4>
     <p>${y}</p>
-    <input type="radio" id="r1">
+    <input type="radio" id="r1" name="rr">
     <label for="r1">${reponch1}</label><br>
     
-    <input type="radio" id="r2">
+    <input type="radio" id="r2" name="rr">
     <label for="r2">${reponch2}</label><br>
     
-    <input type="radio" id="r3">
+    <input type="radio" id="r3" name="rr">
     <label for="r3">${reponch3}</label><br>
     
     <button class="btn btn-primary" id="test">${but}</button>
@@ -84,19 +82,19 @@ function creForm2() {
     target.innerHTML = cardform2;
     let btt = document.querySelector('#test');
     btt.addEventListener('click', () => {
-        const verifier = document.querySelector('input#r2')
-        if (verifier) {
+        const verifier = document.querySelector<HTMLInputElement>('#r2');
+        if (verifier.checked) {
             creForm3();
         }
         else {
-            alert('Choisir la bonne reponse');
+            alert('CHOISIR LA BONNE REPONSE');
         }
     })
 }
 
 function creForm3() {
     const form3 = document.createElement('form');
-    let x = 'Question n°3 : :';
+    let x = 'Question n°3 :';
     let y = 'Pour définir un titre DANS une page HTML, on utilise...';
     let reponch1 = '1. L\'élément title';
     let reponch2 = '2. L\'élément head';
@@ -107,13 +105,13 @@ function creForm3() {
     <div class="container m-auto">
     <h4>${x}</h4>
     <p>${y}</p>
-    <input type="radio" id="r1">
+    <input type="radio" id="r1" name="rr">
     <label for="r1">${reponch1}</label><br>
     
-    <input type="radio" id="r2">
+    <input type="radio" id="r2" name="rr">
     <label for="r2">${reponch2}</label><br>
     
-    <input type="radio" id="r3">
+    <input type="radio" id="r3" name="rr">
     <label for="r3">${reponch3}</label><br>
     
     <button class="btn btn-primary" id="test">${but}</button>
@@ -127,12 +125,12 @@ function creForm3() {
     target.innerHTML = cardform3;
     let btt = document.querySelector('#test');
     btt.addEventListener('click', () => {
-        const verifier = document.querySelector('input#r3')
-        if (verifier) {
+        const verifier = document.querySelector<HTMLInputElement>('#r3');
+        if (verifier.checked) {
             creForm4();
         }
         else {
-            alert('Choisir la bonne reponse');
+            alert('CHOISIR LA BONNE REPONSE');
         }
     })
 }
@@ -170,12 +168,12 @@ function creForm4() {
     target.innerHTML = cardform4;
     let btt = document.querySelector('#test');
     btt.addEventListener('click', () => {
-        const verifier = document.querySelector('input#r2')
+        const verifier = document.querySelector<HTMLInputElement>('#r2').checked;
         if (verifier) {
             final();
         }
         else {
-            alert('Choisir la bonne reponse');
+            alert('CHOISIR LA BONNE REPONSE');
         }
     })
 }
