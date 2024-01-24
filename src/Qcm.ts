@@ -1,7 +1,27 @@
+const timerDuration = 30; // Durée du timer en secondes
+let timerInterval; // Déclarer la variable en dehors de la fonction pour la rendre accessible à l'ensemble du script
 
 const target = document.querySelector<HTMLDivElement>('.target');
 creForm1();
-// target.classList.add('container', 'rounded');
+
+// timer 
+function afficherTimer(secondeRestante, callback) {
+    const timerElement = document.createElement('div');
+    timerElement.innerHTML = `Temps restant : ${secondeRestante}s`;
+    target.appendChild(timerElement);
+
+    timerInterval = setInterval(() => {
+        secondeRestante--;
+        timerElement.innerHTML = `Temps restant : ${secondeRestante}s`;
+
+        if (secondeRestante <= 0) {
+            clearInterval(timerInterval);
+            callback();
+        }
+    }, 1000);
+}
+
+
 
 
 function creForm1() {
@@ -12,7 +32,6 @@ function creForm1() {
     let reponch2 = '2. ol et li';
     let reponch3 = '3. ul et ol';
     let but = 'Repondre';
-
     let cardform1 = `
     <div class="container m-auto" >
     <h4>${x}</h4>
@@ -29,20 +48,19 @@ function creForm1() {
     <button class="btn btn-primary" id="test">${but}</button>
 </div>
     `;
-    target.style.width = '500px';
-
     target.style.backgroundColor = '#F8E8EE';
-
     target.innerHTML = cardform1;
+    afficherTimer(timerDuration, creForm2);
     let btt = document.querySelector('#test');
     btt.addEventListener('click', () => {
 
         const verifier = document.querySelector<HTMLInputElement>('#r1').checked;
         if (verifier) {
+            clearInterval(timerInterval);
             creForm2();
         }
         else {
-            alert('CHOISIR LA BONNE REPONSE');
+            alert("Veuillez choisir la bonne réponse pour passer à la question suivante.");
         }
     })
 }
@@ -50,6 +68,7 @@ function creForm1() {
 
 
 function creForm2() {
+
     const form2 = document.createElement('form');
     let x = 'Question n°2 :';
     let y = 'Le rôle du HTML est de...';
@@ -74,25 +93,29 @@ function creForm2() {
     <button class="btn btn-primary" id="test">${but}</button>
 </div>
     `;
-    // form1.innerHTML = cardform;
-    target.style.width = '500px';
+
 
     target.style.backgroundColor = '#F8E8EE';
 
     target.innerHTML = cardform2;
+    afficherTimer(timerDuration, creForm3);
+
     let btt = document.querySelector('#test');
     btt.addEventListener('click', () => {
         const verifier = document.querySelector<HTMLInputElement>('#r2');
         if (verifier.checked) {
+            clearInterval(timerInterval);
+
             creForm3();
         }
         else {
-            alert('CHOISIR LA BONNE REPONSE');
+            alert("Veuillez choisir la bonne réponse pour passer à la question suivante.");
         }
     })
 }
 
 function creForm3() {
+
     const form3 = document.createElement('form');
     let x = 'Question n°3 :';
     let y = 'Pour définir un titre DANS une page HTML, on utilise...';
@@ -118,25 +141,28 @@ function creForm3() {
     </div>
 
     `;
-    // form1.innerHTML = cardform;
-    target.style.width = '500px';
 
     target.style.backgroundColor = '#F8E8EE';
     target.innerHTML = cardform3;
+    afficherTimer(timerDuration, creForm3);
+
     let btt = document.querySelector('#test');
     btt.addEventListener('click', () => {
         const verifier = document.querySelector<HTMLInputElement>('#r3');
         if (verifier.checked) {
+            clearInterval(timerInterval);
+
             creForm4();
         }
         else {
-            alert('CHOISIR LA BONNE REPONSE');
+            alert("Veuillez choisir la bonne réponse pour passer à la question suivante.");
         }
     })
 }
 
 
 function creForm4() {
+
     const form4 = document.createElement('form');
     let x = 'Question n°4 :';
     let y = 'Lorsque vous utilisez l\'élément a, vous devez obligatoirement préciser...';
@@ -161,56 +187,73 @@ function creForm4() {
     <button class="btn btn-primary" id="test">${but}</button>
 </div>
     `;
-    // form1.innerHTML = cardform;
-    target.style.width = '500px';
 
     target.style.backgroundColor = '#F8E8EE';
     target.innerHTML = cardform4;
+        afficherTimer(timerDuration, final);
+
     let btt = document.querySelector('#test');
     btt.addEventListener('click', () => {
         const verifier = document.querySelector<HTMLInputElement>('#r2').checked;
         if (verifier) {
+            clearInterval(timerInterval);
+
             final();
         }
         else {
-            alert('CHOISIR LA BONNE REPONSE');
+            alert("Veuillez choisir la bonne réponse pour passer à la question suivante.");
         }
     })
 }
 
 
+
+function afficherLeaderboard() {
+   
+    // Create leaderboard container
+    const leaderboardElement = document.createElement('div');
+    leaderboardElement.innerHTML = '<h5>Leaderboard</h5>';
+
+    leaderboardElement.innerHTML += `<p class="text-end">Perfect Score: 100/100 </p>`;
+
+    // Append the leaderboard container to the target
+    target.appendChild(leaderboardElement);
+}
+
+
+
+
+
 function final() {
-    // const divf = document.createElement('div');
+    
     target.style.backgroundColor = '#F8E8EE';
-    target.style.width = '500px';
-    target.innerHTML = "Bravo vous avez reussir votre note est 100";
-
-
     const formf = document.createElement('form');
     let x = 'Merci pour votre participation';
-    let y = 'vous avez un bon niveau et votre note est 100';
-    let but = 'finir'
     let butf = 'Refaire le QCM';
 
     let cardformf = `
     <div class="container m-auto">
-    <h4>${x}</h4>
-    <p>${y}</p>
-    <button class="btn btn-primary" id="test">${but}</button>
-    <button class="btn btn-primary" id="testf">${butf}</button>
+    <h5 class="shadow p-3 mb-5">${x}</h5>
+    
+    <div class="alert alert-success" role="alert">
+        Bravo, vous avez réussi !
+    </div>
+    <button class="btn btn-primary mb-2" id="testf">${butf}</button>
 </div>
     `;
-    // form1.innerHTML = cardform;
+    
     target.innerHTML = cardformf;
-    let btt = document.querySelector('#test');
+
+   
     let bttf = document.querySelector('#testf');
 
-    btt.addEventListener('click', () => {
-
-        target.innerHTML = 'Au Revoir';
-    })
     bttf.addEventListener('click', () => {
+
         creForm1();
 
     })
+
+    // Display leaderboard
+    afficherLeaderboard();
+
 }
